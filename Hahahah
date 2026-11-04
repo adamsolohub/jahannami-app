@@ -1,1 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التطبيق الجهنمي - Cyber Edition</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        body {
+            background-color: #050505;
+            color: #00ffcc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px dashed #00ffcc;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+        .clock {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff0055;
+            text-shadow: 0 0 10px #ff0055;
+            margin: 10px 0;
+        }
+        .container {
+            background: #111;
+            border: 1px solid #00ffcc;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        button {
+            background: #00ffcc;
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 0 10px #00ffcc;
+            transition: 0.2s;
+        }
+        button:hover {
+            background: #ff0055;
+            color: #fff;
+            box-shadow: 0 0 15px #ff0055;
+        }
+        .status {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
 
+    <div class="header">
+        <h1>⚡ التطبيق الجهنمي ⚡</h1>
+        <div class="clock" id="clock">00:00:00</div>
+    </div>
+
+    <div class="container">
+        <p>لوحة التحكم السيبرانية جاهزة للاستخدام.</p>
+        <button id="micBtn">🎙️ تشغيل المايك</button>
+        <div class="status" id="status">الحالة: متوقف</div>
+    </div>
+
+    <script>
+        // نظام الساعة الرقمية
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // زر التفاعل مع المايك
+        const micBtn = document.getElementById('micBtn');
+        const status = document.getElementById('status');
+        let listening = false;
+
+        micBtn.addEventListener('click', () => {
+            listening = !listening;
+            if (listening) {
+                micBtn.style.background = "#ff0055";
+                micBtn.innerText = "🛑 إيقاف المايك";
+                status.innerText = "الحالة: جاري الاستماع...";
+            } else {
+                micBtn.style.background = "#00ffcc";
+                micBtn.innerText = "🎙️ تشغيل المايك";
+                status.innerText = "الحالة: متوقف";
+            }
+        });
+    </script>
+
+</body>
+</html>
